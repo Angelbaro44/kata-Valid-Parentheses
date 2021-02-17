@@ -18,16 +18,44 @@ let validParentheses = (str) => {
         arr1.splice([0],1);
         arr1.includes(')')? arr1.splice( [ arr1.indexOf(')') ] ,1):arr1=[')'];
           };
-            console.log(`Pass: ${i} =>${arr1.join('')}`);
+            console.log(`Iteration: ${i} =>${arr1.join('')}`);
       };
          return arr1.length == 0 ? true: false;
     };
 
 //Test Cases
-console.log(validParentheses( "()()((()" ) ); //Expected Result: false
-console.log(validParentheses( "()" ) ); //Expected Result: true
-console.log(validParentheses( "()()" ) ); //Expected Result: true
-console.log(validParentheses( "(())" ) ); //Expected Result: true
-console.log(validParentheses( ")" ) ); //Expected Result: false
-console.log(validParentheses( "" ) ); //Expected Result: true
-console.log(validParentheses( "())" ) ); //Expected Result: false
+console.log('Result: '+validParentheses( "()()((()" ) ); //Expected Result: false
+console.log('Result: '+validParentheses( "()" ) ); //Expected Result: true
+console.log('Result: '+validParentheses( "()()" ) ); //Expected Result: true
+console.log('Result: '+validParentheses( "(())" ) ); //Expected Result: true
+console.log('Result: '+validParentheses( ")" ) ); //Expected Result: false
+console.log('Result: '+validParentheses( "" ) ); //Expected Result: true
+console.log('Result: '+validParentheses( "())" ) ); //Expected Result: false
+
+
+
+
+
+
+//Alt Solution
+
+// This is a cleaner and more simple solution to this problem.
+// P.S. the '!' on the return statment returns a boolean not the length,
+// the use of '!' on the return is equal to using str.length == 0 ? true: false;
+// Also, the array method returns -1 when no match is made.
+//   ↓        ↓         ↓        ↓         ↓         ↓
+
+let validParenthesesAlt = (str) => {
+      while(str.indexOf('()') != -1){
+            str = str.replace('()', '');
+          }
+          return !str.length;
+};
+//Test Cases
+console.log(validParenthesesAlt( "()()((()" )+ ' Alt' ); //Expected Result: false
+console.log(validParenthesesAlt( "()" )+ ' Alt' ); //Expected Result: true
+console.log(validParenthesesAlt( "()()" )+ ' Alt' ); //Expected Result: true
+console.log(validParenthesesAlt( "(())" )+ ' Alt' ); //Expected Result: true
+console.log(validParenthesesAlt( ")" )+ ' Alt' ); //Expected Result: false
+console.log(validParenthesesAlt( "" )+ ' Alt' ); //Expected Result: true
+console.log(validParenthesesAlt( "())" )+ ' Alt' ); //Expected Result: false
